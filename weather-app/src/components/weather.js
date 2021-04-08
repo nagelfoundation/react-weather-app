@@ -1,14 +1,14 @@
 import React from 'react';
 import './styles.css';
 import moment from 'moment';
-import { Button } from 'semantic-ui-react';
+import { Button, Container } from 'semantic-ui-react';
 
 const refresh = () => {
   window.location.reload();
 }
 
 const WeatherCard = ({weatherData}) => (
-  <div className="main">
+  <Container className="main">
 
       <div className="top">
         <p className="header">{weatherData.name}</p>
@@ -24,12 +24,17 @@ const WeatherCard = ({weatherData}) => (
         <p className="temp">Humidity: {weatherData.main.humidity} %</p>
       </div>
 
+      <Container textAlign='left' className="hi-lo">
+        <p>High: {weatherData.main.temp_max} &deg;C</p>
+        <p>Low: {weatherData.main.temp_min} &deg;C</p>
+      </Container>
+
       <div className="flex">
         <p className="sunrise-sunset">Sunrise: {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString('en-IN')}</p>
         <p className="sunrise-sunset">Sunset: {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString('en-IN')}</p>
       </div>
     
-  </div>
+  </Container>
 )
 
 export default WeatherCard;
